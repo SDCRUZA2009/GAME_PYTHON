@@ -6,6 +6,9 @@ window = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("My Game")
 print("woaaaao que guapooo")
 
+clock = pygame.time.Clock()
+SPEED = 5
+
 player = pygame.Rect(400, 300, 50, 50)
 
 move_up = False
@@ -15,20 +18,25 @@ move_right = False
 
 run = True
 while run:
+
+    clock.tick(60)
+
     #calcular el movimiento del jugador
     delta_x = 0
     delta_y = 0
 
     if move_right == True:
-        delta_x = 100
+        delta_x = SPEED
     if move_left == True:
-        delta_x = -100
+        delta_x = -SPEED
     if move_up == True:
-        delta_y = -100
+        delta_y = -SPEED
     if move_down == True:
-        delta_y = 100
+        delta_y = SPEED
 
-    position_screen = player.move(delta_x, delta_y)
+    player.move_ip(delta_x, delta_y)
+    window.fill((0, 0, 0))
+   
 
 
     pygame.draw.rect(window,(255,0, 0), player)
